@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text;
 using TickerSearch.Api.Services;
+using Xunit;
 
 namespace TickerSearch.Api.Tests;
 
@@ -44,7 +45,7 @@ public sealed class YahooFinanceClientTests
         Assert.Equal(189.42m, result.Price);
         Assert.Equal("USD", result.Currency);
         Assert.Equal("NMS", result.Exchange);
-        Assert.Contains("v8/finance/chart/AAPL?interval=1d&range=1d", handler.RequestUris);
+        Assert.Contains(handler.RequestUris, uri => uri.EndsWith("v8/finance/chart/AAPL?interval=1d&range=1d", StringComparison.Ordinal));
     }
 
     [Fact]

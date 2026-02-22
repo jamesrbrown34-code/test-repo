@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using TickerSearch.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,9 @@ builder.Services.AddHttpClient<YahooFinanceClient>(client =>
 {
     client.BaseAddress = new Uri("https://query1.finance.yahoo.com/");
     client.Timeout = TimeSpan.FromSeconds(10);
+    client.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36");
+    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+    client.DefaultRequestHeaders.Referrer = new Uri("https://finance.yahoo.com/");
 });
 
 var app = builder.Build();
@@ -45,6 +49,10 @@ app.MapGet("/api/quote/{ticker}", async (string ticker, YahooFinanceClient finan
         }
 
         return Results.Ok(quote);
+    }
+    catch (YahooRateLimitException ex)
+    {
+        return Results.Problem(ex.Message, statusCode: StatusCodes.Status429TooManyRequests);
     }
     catch (HttpRequestException)
     {

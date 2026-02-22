@@ -29,3 +29,8 @@ npm run dev
 ```
 
 Then open http://localhost:5173 and search symbols like `AAPL`, `MSFT`, or `TSLA`.
+
+
+## Notes
+
+- The backend sends browser-like headers and uses a small retry/backoff strategy for Yahoo `429 Too Many Requests` responses.

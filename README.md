@@ -34,3 +34,14 @@ Then open http://localhost:5173 and search symbols like `AAPL`, `MSFT`, or `TSLA
 ## Notes
 
 - The backend sends browser-like headers and uses a small retry/backoff strategy for Yahoo `429 Too Many Requests` responses.
+
+
+### Frontend -> backend connection
+
+The frontend now calls the backend using `VITE_API_BASE_URL` (default: `http://localhost:54507`).
+
+You can override it by creating `frontend/.env`:
+
+```bash
+VITE_API_BASE_URL=http://localhost:54507
+```

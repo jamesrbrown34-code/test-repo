@@ -25,6 +25,8 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseCors("frontend");
 
+app.MapGet("/", () => Results.Redirect("/swagger"));
+
 app.MapGet("/health", () => Results.Ok(new { status = "ok" }));
 
 app.MapGet("/api/quote/{ticker}", async (string ticker, YahooFinanceClient financeClient, CancellationToken cancellationToken) =>

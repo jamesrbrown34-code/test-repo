@@ -1,16 +1,24 @@
 # Ticker Search App (React + C#)
 
-This project includes:
+This repository contains a React frontend and a proper C# solution-based backend.
 
-- **Backend**: ASP.NET Core minimal API (`/backend`) that fetches latest ticker prices from Yahoo Finance.
-- **Frontend**: React + Vite app (`/frontend`) for searching a ticker and displaying the latest price.
+## Project structure
+
+- `frontend/` → React + Vite UI.
+- `backend/TickerSearch.sln` → .NET solution file.
+- `backend/src/TickerSearch.Api/` → ASP.NET Core Web API (minimal API) with Yahoo Finance integration.
 
 ## Run backend
 
 ```bash
 cd backend
-dotnet run --urls http://localhost:5107
+dotnet run --project src/TickerSearch.Api/TickerSearch.Api.csproj --urls http://localhost:5107
 ```
+
+Available backend endpoints:
+
+- `GET /health`
+- `GET /api/quote/{ticker}`
 
 ## Run frontend
 
@@ -20,4 +28,4 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:5173 and search for symbols like `AAPL`, `MSFT`, or `TSLA`.
+Then open http://localhost:5173 and search symbols like `AAPL`, `MSFT`, or `TSLA`.

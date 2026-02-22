@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:54507'
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'https://localhost:54507'
 
 export default function App() {
   const [ticker, setTicker] = useState('')

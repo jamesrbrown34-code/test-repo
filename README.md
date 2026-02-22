@@ -12,7 +12,7 @@ This repository contains a React frontend and a proper C# solution-based backend
 
 ```bash
 cd backend
-dotnet run --project src/TickerSearch.Api/TickerSearch.Api.csproj --urls http://localhost:5107
+dotnet run --project src/TickerSearch.Api/TickerSearch.Api.csproj --urls http://localhost:54507
 ```
 
 Available backend endpoints:
